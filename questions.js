@@ -1,7 +1,7 @@
 /* 이 파일은 build.command 가 자동으로 만듭니다. 직접 고치지 말아 주세요.
    문제를 고치려면 questions/ 폴더의 JSON 을 고친 뒤 build.command 를 실행해 주세요.
 
-   만든 시각: 2026-09-05 00:35
+   만든 시각: 2026-09-05 00:41
    문제 수: 초급 4개, 중급 4개, 고급 3개 */
 
 const QUESTIONS = [
@@ -87,13 +87,13 @@ const QUESTIONS = [
     "src": "medium/03-bit-precedence.json",
     "prompt": "틀린 곳을 찾으세요",
     "lang": "C++",
-    "code": "bool isSet(int n, int i) {\n    if (n & (1 << i) == 1) return true;\n    else return false;\n}",
+    "code": "int n, i;\ncin >> n >> i;\n\ncout << (n & (1 << i) == 1);",
     "answer": "n & (1 << i) == 1   →   n & (1 << i)",
-    "note": "==가 &보다 먼저 계산돼서 (1 << i) == 1 이 먼저 처리됩니다.",
-    "input": "n = 12\ni = 2",
-    "output": "true",
+    "note": "==가 &보다 먼저 계산됩니다. (1 << i) == 1 즉 4 == 1 이 먼저 처리돼 거짓(0)이 되고, 12 & 0 = 0 이 나옵니다. n의 2번 비트만 남기려면 괄호를 다시 씌워야 합니다.",
+    "input": "12 2",
+    "output": "4",
     "bad": [
-      2
+      4
     ]
   },
   {
