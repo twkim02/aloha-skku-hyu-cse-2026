@@ -206,7 +206,7 @@ h2 {
   font-weight: 700;
 }
 
-/* 가운데 영역: 남는 공간을 다 쓰고, 넘치면 이 안에서만 스크롤 */
+/* 가운데 영역: 남는 공간을 다 쓰고, 넘치면 이 안에서만 스크롤합니다 */
 .stage {
   flex: 1 1 auto;
   min-height: 0;
@@ -283,7 +283,7 @@ h2 {
   white-space: pre;
 }
 
-/* 코드 한 줄 — 정답 공개 시 badLines만 강조 */
+/* 코드 한 줄 — 정답을 공개할 때 bad 에 적힌 줄만 강조합니다 */
 .code .line {
   display: block;
   padding: 0 clamp(20px, 2.4vw, 36px);

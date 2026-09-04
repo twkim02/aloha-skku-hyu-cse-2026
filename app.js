@@ -1,5 +1,5 @@
 /* 눈으로 하는 디버깅 — 부스 진행 화면
-   조작은 전부 마우스 클릭. 상태는 슬라이드 4개뿐이다. */
+   조작은 전부 마우스 클릭입니다. 상태는 슬라이드 4개뿐입니다. */
 
 const TIME_LIMIT = { easy: 30, medium: 30, hard: 60 };
 const LEVEL_NAME = { easy: "초급", medium: "중급", hard: "고급" };
@@ -58,7 +58,7 @@ function pickQuestion(lv) {
       QUESTIONS.map((q, i) => (q.level === lv ? i : -1)).filter((i) => i >= 0)
     );
   }
-  if (pools[lv].length === 0) return null;   // 해당 난이도 문제가 없을 때
+  if (pools[lv].length === 0) return null;   // 해당 난이도에 문제가 없을 때입니다
   return QUESTIONS[pools[lv].pop()];
 }
 
@@ -75,9 +75,9 @@ function renderCode(q) {
   });
 }
 
-/* 화면에 딱 맞을 때까지 코드 글자 크기를 줄인다.
-   정답 영역까지 미리 자리를 잡아놓고 재기 때문에,
-   정답을 공개해도 코드 크기가 다시 바뀌지 않는다. */
+/* 화면에 딱 맞을 때까지 코드 글자 크기를 줄입니다.
+   정답 영역까지 미리 자리를 잡아 놓고 재기 때문에,
+   정답을 공개해도 코드 크기가 다시 바뀌지 않습니다. */
 
 const CODE_MAX = 34;
 const CODE_MIN = 13;
@@ -116,7 +116,7 @@ function renderQuestion(q) {
     el.givenLabel.textContent = q.given.label || "";
     el.givenText.textContent = q.given.text || "";
     el.given.classList.toggle("stacked", (q.given.text || "").includes("\n"));
-    // 프로그램 출력은 등폭으로, 한글 설명은 본문 폰트로 보여준다
+    // 프로그램 출력은 등폭으로, 한글 설명은 본문 폰트로 보여 줍니다
     el.givenText.classList.toggle("prose", /[가-힣]/.test(q.given.text || ""));
     el.given.hidden = false;
   } else {
@@ -125,7 +125,7 @@ function renderQuestion(q) {
 
   renderCode(q);
 
-  // 정답 내용은 미리 채워두되 감춰둔다 (크기 계산에 쓰인다)
+  // 정답 내용은 미리 채워 두되 감춰 둡니다 (크기를 재는 데 쓰입니다)
   el.answer.textContent = q.answer || "";
   el.note.textContent = q.note || "";
   el.reveal.hidden = true;
@@ -153,8 +153,8 @@ function revealAnswer() {
 }
 
 /* ── 타이머 ─────────────────────────────────────────────── */
-/* 남은 시간은 항상 시작 시각 기준으로 계산한다.
-   1초마다 카운터를 깎으면 창이 가려졌을 때 시간이 어긋난다. */
+/* 남은 시간은 항상 시작 시각을 기준으로 계산합니다.
+   1초마다 카운터를 깎으면 창이 가려졌을 때 시간이 어긋납니다. */
 
 function formatTime(sec) {
   const m = Math.floor(sec / 60);
@@ -169,7 +169,7 @@ function tick() {
 
   if (left <= 0) {
     stopTimer();
-    el.timeup.hidden = false;   // 정답은 자동 공개하지 않는다
+    el.timeup.hidden = false;   // 정답은 자동으로 공개하지 않습니다
   }
 }
 
@@ -187,7 +187,7 @@ function stopTimer() {
 
 /* ── 클릭 연결 ──────────────────────────────────────────── */
 
-// data-go="title" 처럼 적힌 버튼은 그 슬라이드로 이동
+// data-go="title" 처럼 적힌 버튼은 그 슬라이드로 이동합니다
 for (const btn of document.querySelectorAll("[data-go]")) {
   btn.addEventListener("click", () => {
     stopTimer();
@@ -195,7 +195,7 @@ for (const btn of document.querySelectorAll("[data-go]")) {
   });
 }
 
-// 1슬라이드 시작하기 → 전체화면 시도 (안 되면 조용히 넘어감)
+// 1슬라이드 시작하기 → 전체화면을 시도합니다 (안 되면 조용히 넘어갑니다)
 document.querySelector('#slide-title [data-go="level"]').addEventListener("click", () => {
   const r = document.documentElement.requestFullscreen?.();
   if (r && r.catch) r.catch(() => {});
@@ -211,7 +211,7 @@ for (const card of document.querySelectorAll(".level-card")) {
   });
 }
 
-// 준비 화면 시작하기 → 문제와 타이머가 동시에 시작
+// 준비 화면 시작하기 → 문제와 타이머가 동시에 시작됩니다
 el.btnStart.addEventListener("click", () => {
   const q = pickQuestion(level);
   if (!q) {
@@ -219,7 +219,7 @@ el.btnStart.addEventListener("click", () => {
     return;
   }
   current = q;
-  show("quiz");          // 크기를 재려면 화면에 먼저 떠 있어야 한다
+  show("quiz");          // 크기를 재려면 화면에 먼저 떠 있어야 합니다
   renderQuestion(q);
   startTimer(TIME_LIMIT[level]);
 });

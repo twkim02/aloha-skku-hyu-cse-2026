@@ -16,5 +16,5 @@
     4
   ],
   "answer": "ans = ans + n   →   ans = ans + i + 1",
-  "note": "range(n)은 0부터 n-1까지 돈다. 지금은 n을 n번 더해서 n × n 이 나온다."
+  "note": "range(n)은 0부터 n-1까지 돕니다. 지금은 n을 n번 더해서 n × n 이 나옵니다."
 }

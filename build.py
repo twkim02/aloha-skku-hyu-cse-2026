@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""questions/ 폴더의 JSON 문제들을 questions.js 하나로 합친다.
+"""questions/ 폴더의 JSON 문제들을 questions.js 하나로 합칩니다.
 
-브라우저는 file:// 로 열린 페이지에서 JSON 파일을 직접 읽지 못한다(보안 정책).
-그래서 문제는 JSON 으로 관리하되, 화면이 읽을 수 있는 형태로 한 번 합쳐준다.
+브라우저는 file:// 로 열린 페이지에서 JSON 파일을 직접 읽지 못합니다(보안 정책).
+그래서 문제는 JSON 으로 관리하되, 화면이 읽을 수 있는 형태로 한 번 합쳐 줍니다.
 
     python3 build.py        (또는 build.command 더블클릭)
 """
@@ -36,7 +36,7 @@ def warn(where, msg):
 
 
 def as_lines(value, where, field):
-    """문자열이든 문자열 배열이든 받아서 한 덩어리 문자열로 만든다."""
+    """문자열이든 문자열 배열이든 받아서 한 덩어리 문자열로 만듭니다."""
     if isinstance(value, list):
         for line in value:
             if not isinstance(line, str):
@@ -126,7 +126,7 @@ def main():
     for name in sorted(os.listdir(SRC_DIR)):
         p = os.path.join(SRC_DIR, name)
         if os.path.isdir(p) and name not in LEVELS and not name.startswith("."):
-            warn("questions/" + name, "난이도 폴더가 아니라 건너뜁니다 "
+            warn("questions/" + name, "난이도 폴더가 아니어서 건너뜁니다 "
                                       "(쓸 수 있는 폴더: %s)" % ", ".join(LEVELS))
 
     out = []
@@ -154,13 +154,13 @@ def main():
         print()
         for e in errors:
             print("  오류   " + e)
-        print("\n%d건의 오류 때문에 questions.js 를 만들지 않았습니다. "
-              "위 파일을 고치고 다시 실행하세요." % len(errors))
+        print("\n오류가 %d건 있어서 questions.js 를 만들지 않았습니다. "
+              "위 파일을 고치고 다시 실행해 주세요." % len(errors))
         return 1
 
     header = (
-        "/* 이 파일은 build.command 가 자동으로 만듭니다. 직접 고치지 마세요.\n"
-        "   문제를 고치려면 questions/ 폴더의 JSON 을 고친 뒤 build.command 를 실행하세요.\n"
+        "/* 이 파일은 build.command 가 자동으로 만듭니다. 직접 고치지 말아 주세요.\n"
+        "   문제를 고치려면 questions/ 폴더의 JSON 을 고친 뒤 build.command 를 실행해 주세요.\n"
         "\n"
         "   만든 시각: %s\n"
         "   문제 수: %s */\n\n"
