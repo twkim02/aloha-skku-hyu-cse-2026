@@ -1,0 +1,4 @@
+.DS_Store
+
+# questions.js 는 build.command 가 만드는 파일이지만,
+# GitHub Pages 에는 빌드 단계가 없으므로 반드시 커밋해야 한다. (무시하지 말 것)

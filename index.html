@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>눈으로 하는 디버깅 — ALOHA</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- 1. 시작 -->
+<section class="slide" id="slide-title">
+  <img class="logo" src="assets/logo.png" alt="ALOHA">
+  <h1>눈으로 하는 디버깅</h1>
+  <p class="sub">코드를 실행하지 않고, 눈으로만 찾아보세요.</p>
+  <button class="primary" data-go="level">시작하기</button>
+</section>
+
+<!-- 2. 난이도 선택 -->
+<section class="slide" id="slide-level">
+  <h2>난이도를 고르세요</h2>
+  <div class="levels">
+    <button class="level-card" data-level="easy">
+      <span class="name">초급</span>
+      <span class="time">30초</span>
+    </button>
+    <button class="level-card" data-level="medium">
+      <span class="name">중급</span>
+      <span class="time">30초</span>
+    </button>
+    <button class="level-card" data-level="hard">
+      <span class="name">고급</span>
+      <span class="time">60초</span>
+    </button>
+  </div>
+  <button class="link back" data-go="title">← 처음으로</button>
+</section>
+
+<!-- 3. 준비 -->
+<section class="slide" id="slide-ready">
+  <p class="ready-level" id="ready-level">중급</p>
+  <p class="ready-time" id="ready-time">제한시간 30초</p>
+  <button class="primary" id="btn-start">시작하기</button>
+  <button class="link back" data-go="level">← 난이도 다시 선택</button>
+</section>
+
+<!-- 4. 문제 / 정답 -->
+<section class="slide" id="slide-quiz">
+  <header class="bar">
+    <span class="badge" id="quiz-level">중급</span>
+    <span class="timer" id="timer">0:30</span>
+  </header>
+
+  <div class="stage">
+    <p class="prompt" id="prompt"></p>
+
+    <div class="given" id="given" hidden>
+      <span class="given-label" id="given-label"></span>
+      <pre class="given-text" id="given-text"></pre>
+    </div>
+
+    <div class="codebox">
+      <span class="lang" id="lang"></span>
+      <pre class="code" id="code"></pre>
+    </div>
+
+    <div class="reveal" id="reveal" hidden>
+      <p class="answer"><span class="answer-label">정답</span><span id="answer"></span></p>
+      <p class="note" id="note"></p>
+    </div>
+  </div>
+
+  <footer class="bar bottom">
+    <span class="timeup" id="timeup" hidden>시간 종료</span>
+    <button class="primary small" id="btn-reveal">정답 보기</button>
+    <button class="primary small" id="btn-home" hidden data-go="title">처음으로</button>
+  </footer>
+</section>
+
+<script src="questions.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

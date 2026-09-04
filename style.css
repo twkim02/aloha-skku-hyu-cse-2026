@@ -1,0 +1,333 @@
+:root {
+  --bg:        #101012;
+  --panel:     #1a1a1e;
+  --panel-2:   #202026;
+  --line:      #2c2c33;
+  --text:      #e9e9ec;
+  --dim:       #8b8b93;
+  --accent:    #a78bfa;
+  --bad:       #ff6b6b;
+  --bad-bg:    rgba(255, 107, 107, 0.13);
+
+  --kr: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+        "Malgun Gothic", system-ui, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--kr);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── 슬라이드 ────────────────────────────────────────────── */
+
+.slide {
+  display: none;
+  height: 100dvh;
+  padding: clamp(24px, 4vh, 56px) clamp(24px, 5vw, 80px);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px, 2.4vh, 32px);
+  text-align: center;
+}
+
+.slide.active {
+  display: flex;
+  animation: fade 150ms ease-out;
+}
+
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+/* ── 버튼 ────────────────────────────────────────────────── */
+
+button {
+  font-family: inherit;
+  color: inherit;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.primary {
+  min-height: 64px;
+  padding: 0 clamp(40px, 5vw, 72px);
+  border-radius: 10px;
+  background: var(--accent);
+  color: #16121f;
+  font-size: clamp(20px, 1.9vw, 28px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  transition: filter 120ms;
+}
+.primary:hover { filter: brightness(1.1); }
+.primary:active { filter: brightness(0.92); }
+
+.primary.small {
+  min-height: 54px;
+  padding: 0 34px;
+  font-size: clamp(16px, 1.3vw, 20px);
+}
+
+.link {
+  color: var(--dim);
+  font-size: clamp(14px, 1.1vw, 18px);
+  padding: 10px 14px;
+}
+.link:hover { color: var(--text); }
+
+.back { margin-top: 4px; }
+
+/* ── 1. 시작 ─────────────────────────────────────────────── */
+
+.logo {
+  height: clamp(110px, 20vh, 210px);
+  width: auto;
+  margin-bottom: clamp(4px, 1.5vh, 20px);
+}
+
+h1 {
+  font-size: clamp(34px, 4.6vw, 68px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.sub {
+  color: var(--dim);
+  font-size: clamp(15px, 1.4vw, 21px);
+  margin-bottom: clamp(8px, 2vh, 24px);
+}
+
+/* ── 2. 난이도 ───────────────────────────────────────────── */
+
+h2 {
+  font-size: clamp(24px, 2.8vw, 40px);
+  font-weight: 700;
+  margin-bottom: clamp(8px, 2vh, 24px);
+}
+
+.levels {
+  display: flex;
+  gap: clamp(16px, 2vw, 30px);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.level-card {
+  width: clamp(180px, 17vw, 260px);
+  padding: clamp(28px, 4vh, 48px) 20px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--panel);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: border-color 120ms, background 120ms;
+}
+.level-card:hover {
+  border-color: var(--accent);
+  background: var(--panel-2);
+}
+
+.level-card .name {
+  font-size: clamp(26px, 2.6vw, 38px);
+  font-weight: 700;
+}
+.level-card .time {
+  font-size: clamp(14px, 1.1vw, 18px);
+  color: var(--dim);
+}
+
+/* ── 3. 준비 ─────────────────────────────────────────────── */
+
+.ready-level {
+  font-size: clamp(38px, 5vw, 68px);
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+.ready-time {
+  font-size: clamp(16px, 1.5vw, 22px);
+  color: var(--dim);
+  margin-bottom: clamp(10px, 2.5vh, 30px);
+}
+
+/* ── 4. 문제 ─────────────────────────────────────────────── */
+
+#slide-quiz {
+  justify-content: flex-start;
+  gap: 0;
+  text-align: left;
+  padding: clamp(18px, 2.6vh, 34px) clamp(24px, 4vw, 64px);
+}
+
+.bar {
+  width: 100%;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.bar.bottom {
+  justify-content: flex-end;
+  padding-top: clamp(12px, 2vh, 22px);
+}
+
+.badge {
+  font-size: clamp(16px, 1.5vw, 22px);
+  font-weight: 700;
+  color: var(--dim);
+  letter-spacing: 0.08em;
+}
+
+.timer {
+  font-family: var(--mono);
+  font-size: clamp(28px, 3.2vw, 48px);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  transition: color 200ms;
+}
+.timer.warn { color: var(--bad); }
+
+.timeup {
+  margin-right: auto;
+  color: var(--bad);
+  font-size: clamp(17px, 1.6vw, 24px);
+  font-weight: 700;
+}
+
+/* 가운데 영역: 남는 공간을 다 쓰고, 넘치면 이 안에서만 스크롤 */
+.stage {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(12px, 2vh, 24px);
+  padding: clamp(10px, 2vh, 24px) 0;
+}
+
+.prompt {
+  flex: none;
+  font-size: clamp(18px, 1.8vw, 27px);
+  font-weight: 600;
+}
+
+.given {
+  flex: none;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.given.stacked {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.given-label {
+  flex: none;
+  color: var(--dim);
+  font-size: clamp(14px, 1.2vw, 19px);
+}
+.given-text {
+  font-family: var(--mono);
+  font-size: clamp(16px, 1.5vw, 24px);
+  line-height: 1.5;
+  white-space: pre;
+  color: var(--text);
+}
+
+.given-text.prose {
+  font-family: var(--kr);
+  font-size: clamp(15px, 1.4vw, 22px);
+  white-space: normal;
+}
+
+.codebox {
+  flex: none;
+  position: relative;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: clamp(18px, 2.6vh, 32px) 0 clamp(18px, 2.6vh, 32px) 0;
+  overflow-x: auto;
+}
+
+.lang {
+  position: absolute;
+  top: 10px;
+  right: 16px;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--dim);
+}
+
+.code {
+  font-family: var(--mono);
+  font-size: clamp(17px, 1.95vw, 32px);
+  line-height: 1.65;
+  white-space: pre;
+}
+
+/* 코드 한 줄 — 정답 공개 시 badLines만 강조 */
+.code .line {
+  display: block;
+  padding: 0 clamp(20px, 2.4vw, 36px);
+  min-height: 1.65em;
+}
+.code .line.hit {
+  background: var(--bad-bg);
+  box-shadow: inset 3px 0 0 var(--bad);
+  color: #ffd7d7;
+}
+
+.reveal.measuring { visibility: hidden; }
+
+.reveal {
+  flex: none;
+  border-top: 1px solid var(--line);
+  padding-top: clamp(12px, 2vh, 22px);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.answer {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-family: var(--mono);
+  font-size: clamp(19px, 2vw, 32px);
+  font-weight: 600;
+  color: var(--accent);
+}
+.answer-label {
+  flex: none;
+  font-family: var(--kr);
+  font-size: clamp(14px, 1.2vw, 19px);
+  font-weight: 600;
+  color: var(--dim);
+}
+
+.note {
+  color: var(--dim);
+  font-size: clamp(15px, 1.35vw, 21px);
+  line-height: 1.6;
+}
+
+[hidden] { display: none !important; }

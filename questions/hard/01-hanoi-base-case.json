@@ -1,0 +1,30 @@
+{
+  "prompt": "틀린 곳을 찾으세요",
+  "lang": "Python",
+  "given": {
+    "label": "N = 3 일 때 원하는 출력의 첫 줄",
+    "text": "7"
+  },
+  "code": [
+    "def hanoi(n, source, target, auxiliary, moves):",
+    "    if n == 1:",
+    "        return",
+    "    hanoi(n - 1, source, auxiliary, target, moves)",
+    "    moves.append(f\"{source} -> {target}\")",
+    "    hanoi(n - 1, auxiliary, target, source, moves)",
+    "",
+    "n = int(input())",
+    "moves = []",
+    "hanoi(n, 'A', 'C', 'B', moves)",
+    "",
+    "print(len(moves))",
+    "for move in moves:",
+    "    print(move)"
+  ],
+  "bad": [
+    2,
+    3
+  ],
+  "answer": "if n == 1:   →   if n == 0:",
+  "note": "원판이 1개일 때도 한 번은 옮겨야 한다. 지금은 그냥 돌아가버려서 7개가 아니라 3개만 나온다."
+}

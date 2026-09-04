@@ -1,0 +1,24 @@
+{
+  "prompt": "출력 결과를 예측하세요",
+  "lang": "C++",
+  "code": [
+    "int capacity = 17;",
+    "vector<int> weight = {4, 7, 9};",
+    "vector<int> value  = {7, 13, 16};",
+    "",
+    "vector<int> dp(capacity + 1, 0);",
+    "",
+    "for (int i = 0; i < 3; ++i) {",
+    "    for (int w = weight[i]; w <= capacity; ++w) {",
+    "        dp[w] = max(dp[w], dp[w - weight[i]] + value[i]);",
+    "    }",
+    "}",
+    "",
+    "cout << dp[capacity] << '\\n';"
+  ],
+  "bad": [
+    8
+  ],
+  "answer": "30",
+  "note": "안쪽 루프가 오름차순이라 같은 물건을 여러 번 담게 된다. 4kg 두 개 + 9kg = 17kg, 7+7+16 = 30. 한 번씩만 담았다면 29다."
+}
