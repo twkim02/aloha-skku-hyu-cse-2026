@@ -12,6 +12,8 @@ const el = {
   work:       $("work"),
   ioInput:    $("io-input"),
   ioOutput:   $("io-output"),
+  ioGuess:    $("io-guess"),
+  guess:      $("guess"),
   inputText:  $("input-text"),
   outputText: $("output-text"),
   readyLevel: $("ready-level"),
@@ -109,6 +111,13 @@ function fitCode() {
   }
 }
 
+/* 적은 만큼 칸이 늘어나게 합니다. 여러 줄짜리 답이 잘려 보이면
+   정답과 나란히 비교할 수가 없기 때문입니다. */
+function growGuess() {
+  el.guess.style.height = "auto";
+  el.guess.style.height = el.guess.scrollHeight + "px";
+}
+
 /* 입력/출력 칸 하나를 채우거나, 내용이 없으면 숨깁니다. */
 function fillIO(box, pre, text) {
   if (!text) {
@@ -128,8 +137,18 @@ function renderQuestion(q) {
 
   fillIO(el.ioInput, el.inputText, q.input);
   fillIO(el.ioOutput, el.outputText, q.output);
-  // 입력도 출력도 없는 문제(출력 예측)는 코드만 가운데에 놓습니다
-  el.work.classList.toggle("solo", !q.input && !q.output);
+
+  // 원하는 출력을 보여주지 않는 문제 = 출력을 묻는 문제이므로 답 적는 칸을 띄웁니다.
+  // 맞았는지 비교하지는 않습니다. 적은 값은 정답을 공개해도 그대로 남습니다.
+  el.ioGuess.hidden = !!q.output;
+  el.guess.value = "";
+  el.guess.style.height = "";
+
+  // 왼쪽에 보여줄 게 하나도 없으면 코드만 가운데에 놓습니다
+  el.work.classList.toggle(
+    "solo",
+    el.ioInput.hidden && el.ioOutput.hidden && el.ioGuess.hidden
+  );
 
   renderCode(q);
 
@@ -148,6 +167,7 @@ function renderQuestion(q) {
 function revealAnswer() {
   if (!current) return;
   stopTimer();
+  if (!el.ioGuess.hidden) growGuess();
 
   for (const n of current.bad || []) {
     const line = el.code.querySelector('.line[data-n="' + n + '"]');
@@ -230,8 +250,10 @@ el.btnStart.addEventListener("click", () => {
   show("quiz");          // 크기를 재려면 화면에 먼저 떠 있어야 합니다
   renderQuestion(q);
   startTimer(TIME_LIMIT[level]);
+  if (!el.ioGuess.hidden) el.guess.focus();
 });
 
+el.guess.addEventListener("input", growGuess);
 el.btnReveal.addEventListener("click", revealAnswer);
 
 window.addEventListener("resize", () => {

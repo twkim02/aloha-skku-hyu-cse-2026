@@ -268,6 +268,27 @@ h2 {
   overflow-x: auto;
 }
 
+/* 출력을 묻는 문제에서 참가자가 답을 적는 칸 */
+.guess {
+  display: block;
+  width: 100%;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: clamp(15px, 1.4vw, 24px);
+  line-height: 1.55;
+  min-height: 5.5em;
+  max-height: 40vh;      /* 아주 길게 적어도 화면을 밀어내지 않도록 */
+  overflow-y: auto;
+  resize: none;
+  outline: none;
+}
+.guess:focus { border-color: var(--accent); }
+.guess::placeholder { color: var(--dim); opacity: 0.55; }
+
 /* 한글 설명이 섞이면 본문 폰트로 바꿔 줍니다 */
 .io-text.prose {
   font-family: var(--kr);
