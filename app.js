@@ -9,15 +9,17 @@ const $ = (id) => document.getElementById(id);
 const el = {
   stage:      document.querySelector("#slide-quiz .stage"),
   codebox:    document.querySelector("#slide-quiz .codebox"),
+  work:       $("work"),
+  ioInput:    $("io-input"),
+  ioOutput:   $("io-output"),
+  inputText:  $("input-text"),
+  outputText: $("output-text"),
   readyLevel: $("ready-level"),
   readyTime:  $("ready-time"),
   quizLevel:  $("quiz-level"),
   timer:      $("timer"),
   timeup:     $("timeup"),
   prompt:     $("prompt"),
-  given:      $("given"),
-  givenLabel: $("given-label"),
-  givenText:  $("given-text"),
   lang:       $("lang"),
   code:       $("code"),
   reveal:     $("reveal"),
@@ -107,21 +109,27 @@ function fitCode() {
   }
 }
 
+/* 입력/출력 칸 하나를 채우거나, 내용이 없으면 숨깁니다. */
+function fillIO(box, pre, text) {
+  if (!text) {
+    box.hidden = true;
+    return;
+  }
+  pre.textContent = text;
+  // 프로그램 값은 등폭으로, 한글 설명은 본문 폰트로 보여 줍니다
+  pre.classList.toggle("prose", /[가-힣]/.test(text));
+  box.hidden = false;
+}
+
 function renderQuestion(q) {
   el.quizLevel.textContent = LEVEL_NAME[q.level];
   el.prompt.textContent = q.prompt || "";
   el.lang.textContent = q.lang || "";
 
-  if (q.given) {
-    el.givenLabel.textContent = q.given.label || "";
-    el.givenText.textContent = q.given.text || "";
-    el.given.classList.toggle("stacked", (q.given.text || "").includes("\n"));
-    // 프로그램 출력은 등폭으로, 한글 설명은 본문 폰트로 보여 줍니다
-    el.givenText.classList.toggle("prose", /[가-힣]/.test(q.given.text || ""));
-    el.given.hidden = false;
-  } else {
-    el.given.hidden = true;
-  }
+  fillIO(el.ioInput, el.inputText, q.input);
+  fillIO(el.ioOutput, el.outputText, q.output);
+  // 입력도 출력도 없는 문제(출력 예측)는 코드만 가운데에 놓습니다
+  el.work.classList.toggle("solo", !q.input && !q.output);
 
   renderCode(q);
 

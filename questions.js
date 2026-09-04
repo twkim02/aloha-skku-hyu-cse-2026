@@ -1,7 +1,7 @@
 /* 이 파일은 build.command 가 자동으로 만듭니다. 직접 고치지 말아 주세요.
    문제를 고치려면 questions/ 폴더의 JSON 을 고친 뒤 build.command 를 실행해 주세요.
 
-   만든 시각: 2026-09-04 23:40
+   만든 시각: 2026-09-05 00:12
    문제 수: 초급 4개, 중급 4개, 고급 3개 */
 
 const QUESTIONS = [
@@ -13,10 +13,7 @@ const QUESTIONS = [
     "code": "int arr[5] = {1, 2, 3, 4, 5};\n\nfor (int i = 0; i <= 5; i++) {\n    printf(\"%d \", arr[i]);\n}",
     "answer": "i <= 5   →   i < 5",
     "note": "크기가 5인 배열의 인덱스는 0부터 4까지입니다.",
-    "given": {
-      "label": "원하는 출력",
-      "text": "1 2 3 4 5"
-    },
+    "output": "1 2 3 4 5",
     "bad": [
       3
     ]
@@ -29,6 +26,8 @@ const QUESTIONS = [
     "code": "int x = 5;\n\nif (x = 10) {\n    printf(\"x is 10\\n\");\n}",
     "answer": "x = 10   →   x == 10",
     "note": "=는 대입, ==가 비교입니다. x에 10을 넣은 뒤 그 값 10이 참으로 취급돼 조건이 항상 성립합니다.",
+    "input": "x = 5",
+    "output": "아무것도 출력되지 않습니다",
     "bad": [
       3
     ]
@@ -36,11 +35,12 @@ const QUESTIONS = [
   {
     "level": "easy",
     "src": "easy/03-start-index.json",
-    "prompt": "20 30 40 50 만 출력하려면 i의 시작값을 어떻게 바꿔야 할까요?",
+    "prompt": "이 출력이 나오게 하려면 어디를 바꿔야 할까요?",
     "lang": "C++",
     "code": "int arr[5] = {10, 20, 30, 40, 50};\n\nfor (int i = 0; i < 5; i++) {\n    cout << arr[i] << \" \";\n}",
     "answer": "int i = 0   →   int i = 1",
     "note": "10은 arr[0]입니다. 인덱스 1부터 시작하면 20부터 끝까지 출력됩니다.",
+    "output": "20 30 40 50",
     "bad": [
       3
     ]
@@ -65,10 +65,7 @@ const QUESTIONS = [
     "code": "for (int i = 0; i < 3; i++) {\n    for (int j = 0; j <= i; i++) {\n        printf(\"*\");\n    }\n    printf(\"\\n\");\n}",
     "answer": "i++   →   j++",
     "note": "안쪽 반복문이 j 대신 i를 증가시킵니다. j가 그대로라 조건 j <= i가 계속 참이 되어 끝나지 않습니다.",
-    "given": {
-      "label": "원하는 출력",
-      "text": "*\n**\n***"
-    },
+    "output": "*\n**\n***",
     "bad": [
       2
     ]
@@ -79,12 +76,10 @@ const QUESTIONS = [
     "prompt": "틀린 곳을 찾으세요",
     "lang": "Python",
     "code": "n = int(input())\nans = 0\nfor i in range(1, n+1):\n    ans = ans + n\nprint(ans)",
-    "answer": "ans = ans + n   →   ans = ans + i + 1",
+    "answer": "ans = ans + n   →   ans = ans + i",
     "note": "현재 코드는 n을 n번 더해서 n × n 이 나오는 코드입니다.",
-    "given": {
-      "label": "하는 일",
-      "text": "n을 입력받아 1부터 n까지 더한 값을 출력"
-    },
+    "input": "5",
+    "output": "15",
     "bad": [
       4
     ]
@@ -96,11 +91,9 @@ const QUESTIONS = [
     "lang": "C++",
     "code": "bool isSet(int n, int i) {\n    if (n & (1 << i) == 1) return true;\n    else return false;\n}",
     "answer": "n & (1 << i) == 1   →   n & (1 << i)",
-    "note": "==가 &보다 먼저 계산돼서 (1 << i) == 1 이 먼저 처리됩니다. i가 0일 때만 우연히 맞습니다.",
-    "given": {
-      "label": "하는 일",
-      "text": "n의 i번째 비트가 켜져 있는지 확인"
-    },
+    "note": "==가 &보다 먼저 계산돼서 (1 << i) == 1 이 먼저 처리됩니다.",
+    "input": "n = 12\ni = 2",
+    "output": "true",
     "bad": [
       2
     ]
@@ -125,10 +118,8 @@ const QUESTIONS = [
     "code": "def hanoi(n, source, target, auxiliary, moves):\n    if n == 1:\n        return\n    hanoi(n - 1, source, auxiliary, target, moves)\n    moves.append(f\"{source} -> {target}\")\n    hanoi(n - 1, auxiliary, target, source, moves)\n\nn = int(input())\nmoves = []\nhanoi(n, 'A', 'C', 'B', moves)\n\nprint(len(moves))\nfor move in moves:\n    print(move)",
     "answer": "if n == 1:   →   if n == 0:",
     "note": "원판이 1개일 때도 한 번은 옮겨야 합니다. 지금은 그냥 돌아가버려서 7개가 아니라 3개만 나옵니다.",
-    "given": {
-      "label": "N = 3 일 때 원하는 출력의 첫 줄",
-      "text": "7"
-    },
+    "input": "3",
+    "output": "7\nA -> C\nA -> B\nC -> B\nA -> C\nB -> A\nB -> C\nA -> C",
     "bad": [
       2,
       3
@@ -141,7 +132,7 @@ const QUESTIONS = [
     "lang": "C++",
     "code": "int capacity = 17;\nvector<int> weight = {4, 7, 9};\nvector<int> value  = {7, 13, 16};\n\nvector<int> dp(capacity + 1, 0);\n\nfor (int i = 0; i < 3; ++i) {\n    for (int w = weight[i]; w <= capacity; ++w) {\n        dp[w] = max(dp[w], dp[w - weight[i]] + value[i]);\n    }\n}\n\ncout << dp[capacity] << '\\n';",
     "answer": "30",
-    "note": "17kg까지 담기는 가방에 무게 4·7·9kg, 가치 7·13·16인 물건을 넣어 가치를 최대로 만드는 배낭 문제(knapsack)입니다. 그런데 안쪽 루프가 오름차순이라 같은 물건을 여러 번 담을 수 있게 되어, 4kg 두 개와 9kg 하나로 17kg을 꽉 채워 7+7+16 = 30이 나옵니다. 물건을 하나씩만 담는 0/1 배낭이었다면 7kg+9kg = 16kg, 13+16 = 29였습니다.",
+    "note": "17kg까지 담기는 가방에 무게 4·7·9kg, 가치 7·13·16인 물건을 넣어 가치를 최대로 만드는 knapsack 문제입니다. 같은 물건을 여러 번 담을 수 있게 되어, 4kg 두 개와 9kg 하나로 17kg을 꽉 채워 7+7+16 = 30이 나옵니다.",
     "bad": [
       8
     ]

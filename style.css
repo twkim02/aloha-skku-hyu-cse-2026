@@ -225,40 +225,59 @@ h2 {
   font-weight: 600;
 }
 
-.given {
+/* 왼쪽 입출력 + 오른쪽 코드 */
+.work {
   flex: none;
   display: flex;
-  align-items: baseline;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.given.stacked {
-  flex-direction: column;
   align-items: flex-start;
-  gap: 6px;
+  gap: clamp(18px, 2vw, 34px);
+  width: 100%;
 }
 
-.given-label {
-  flex: none;
+/* 입출력이 없는 문제(출력 예측)는 코드만 가운데에 놓습니다 */
+.work.solo .io { display: none; }
+
+.io {
+  flex: 0 0 auto;
+  width: clamp(190px, 24%, 360px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(12px, 1.6vh, 20px);
+}
+
+.io-box {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: clamp(12px, 1.6vh, 20px) clamp(14px, 1.2vw, 22px);
+}
+
+.io-label {
+  font-size: clamp(12px, 1vw, 16px);
+  font-weight: 600;
   color: var(--dim);
-  font-size: clamp(14px, 1.2vw, 19px);
-}
-.given-text {
-  font-family: var(--mono);
-  font-size: clamp(16px, 1.5vw, 24px);
-  line-height: 1.5;
-  white-space: pre;
-  color: var(--text);
+  letter-spacing: 0.04em;
+  margin-bottom: 8px;
 }
 
-.given-text.prose {
+.io-text {
+  font-family: var(--mono);
+  font-size: clamp(15px, 1.4vw, 24px);
+  line-height: 1.55;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+/* 한글 설명이 섞이면 본문 폰트로 바꿔 줍니다 */
+.io-text.prose {
   font-family: var(--kr);
-  font-size: clamp(15px, 1.4vw, 22px);
+  font-size: clamp(14px, 1.25vw, 20px);
   white-space: normal;
 }
 
 .codebox {
-  flex: none;
+  flex: 1 1 auto;
+  min-width: 0;
   position: relative;
   background: var(--panel);
   border: 1px solid var(--line);

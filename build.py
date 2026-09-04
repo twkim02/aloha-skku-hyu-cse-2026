@@ -20,7 +20,7 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 SRC_DIR = os.path.join(ROOT, "questions")
 OUT = os.path.join(ROOT, "questions.js")
 
-KNOWN_KEYS = {"prompt", "lang", "given", "code", "bad", "answer", "note"}
+KNOWN_KEYS = {"prompt", "lang", "input", "output", "code", "bad", "answer", "note"}
 REQUIRED = ["prompt", "code", "answer"]
 
 errors = []
@@ -90,15 +90,13 @@ def load_one(level, filename):
         "note": data.get("note", ""),
     }
 
-    given = data.get("given")
-    if given:
-        if not isinstance(given, dict) or "text" not in given:
-            fail(where, 'given 은 { "label": ..., "text": ... } 형태여야 합니다')
-        else:
-            q["given"] = {
-                "label": given.get("label", ""),
-                "text": as_lines(given["text"], where, "given.text"),
-            }
+    if "given" in data:
+        fail(where, "given 은 더 이상 쓰지 않습니다. "
+                    'input 과 output 으로 나눠 적어 주세요. 예) "output": ["1 2 3"]')
+
+    for field in ("input", "output"):
+        if data.get(field):
+            q[field] = as_lines(data[field], where, field)
 
     bad = data.get("bad")
     if bad:

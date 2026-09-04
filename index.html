@@ -54,14 +54,23 @@
   <div class="stage">
     <p class="prompt" id="prompt"></p>
 
-    <div class="given" id="given" hidden>
-      <span class="given-label" id="given-label"></span>
-      <pre class="given-text" id="given-text"></pre>
-    </div>
+    <!-- 왼쪽에 입력/출력, 오른쪽에 코드. 입출력이 없는 문제는 .solo 로 코드만 보여줍니다 -->
+    <div class="work" id="work">
+      <aside class="io" id="io">
+        <section class="io-box" id="io-input" hidden>
+          <h3 class="io-label">입력</h3>
+          <pre class="io-text" id="input-text"></pre>
+        </section>
+        <section class="io-box" id="io-output" hidden>
+          <h3 class="io-label">원하는 출력</h3>
+          <pre class="io-text" id="output-text"></pre>
+        </section>
+      </aside>
 
-    <div class="codebox">
-      <span class="lang" id="lang"></span>
-      <pre class="code" id="code"></pre>
+      <div class="codebox">
+        <span class="lang" id="lang"></span>
+        <pre class="code" id="code"></pre>
+      </div>
     </div>
 
     <div class="reveal" id="reveal" hidden>

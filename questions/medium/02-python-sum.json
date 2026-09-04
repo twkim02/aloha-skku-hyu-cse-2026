@@ -1,10 +1,12 @@
 {
   "prompt": "틀린 곳을 찾으세요",
   "lang": "Python",
-  "given": {
-    "label": "하는 일",
-    "text": "n을 입력받아 1부터 n까지 더한 값을 출력"
-  },
+  "input": [
+    "5"
+  ],
+  "output": [
+    "15"
+  ],
   "code": [
     "n = int(input())",
     "ans = 0",
@@ -15,6 +17,6 @@
   "bad": [
     4
   ],
-  "answer": "ans = ans + n   →   ans = ans + i + 1",
+  "answer": "ans = ans + n   →   ans = ans + i",
   "note": "현재 코드는 n을 n번 더해서 n × n 이 나오는 코드입니다."
 }
