@@ -13,8 +13,8 @@ import os
 import sys
 from datetime import datetime
 
-LEVELS = ["easy", "medium", "hard"]
-LEVEL_NAME = {"easy": "초급", "medium": "중급", "hard": "고급"}
+LEVELS = ["easy", "hard"]
+LEVEL_NAME = {"easy": "초급", "hard": "고급"}
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SRC_DIR = os.path.join(ROOT, "questions")

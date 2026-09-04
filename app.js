@@ -1,8 +1,8 @@
 /* 눈으로 하는 디버깅 — 부스 진행 화면
    조작은 전부 마우스 클릭입니다. 상태는 슬라이드 4개뿐입니다. */
 
-const TIME_LIMIT = { easy: 30, medium: 30, hard: 60 };
-const LEVEL_NAME = { easy: "초급", medium: "중급", hard: "고급" };
+const TIME_LIMIT = { easy: 30, hard: 60 };
+const LEVEL_NAME = { easy: "초급", hard: "고급" };
 
 const $ = (id) => document.getElementById(id);
 
@@ -34,7 +34,7 @@ const el = {
   btnHome:    $("btn-home"),
 };
 
-let level = "medium";
+let level = "easy";
 let current = null;
 let deadline = 0;
 let ticker = null;
@@ -48,7 +48,7 @@ function show(name) {
 
 /* ── 문제 뽑기: 난이도별로 한 바퀴 돌 때까지 중복 없음 ──── */
 
-const pools = { easy: [], medium: [], hard: [] };
+const pools = { easy: [], hard: [] };
 
 function shuffle(a) {
   for (let i = a.length - 1; i > 0; i--) {

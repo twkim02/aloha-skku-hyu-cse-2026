@@ -124,8 +124,8 @@ h2 {
 }
 
 .level-card {
-  width: clamp(180px, 17vw, 260px);
-  padding: clamp(28px, 4vh, 48px) 20px;
+  width: clamp(220px, 22vw, 340px);
+  padding: clamp(36px, 6vh, 68px) 24px;
   border: 1px solid var(--line);
   border-radius: 14px;
   background: var(--panel);
@@ -140,7 +140,7 @@ h2 {
 }
 
 .level-card .name {
-  font-size: clamp(26px, 2.6vw, 38px);
+  font-size: clamp(30px, 3vw, 46px);
   font-weight: 700;
 }
 .level-card .time {

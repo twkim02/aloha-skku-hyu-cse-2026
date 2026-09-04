@@ -1,8 +1,8 @@
 /* 이 파일은 build.command 가 자동으로 만듭니다. 직접 고치지 말아 주세요.
    문제를 고치려면 questions/ 폴더의 JSON 을 고친 뒤 build.command 를 실행해 주세요.
 
-   만든 시각: 2026-09-05 01:17
-   문제 수: 초급 4개, 중급 4개, 고급 3개 */
+   만든 시각: 2026-09-05 01:50
+   문제 수: 초급 5개, 고급 6개 */
 
 const QUESTIONS = [
   {
@@ -20,19 +20,7 @@ const QUESTIONS = [
   },
   {
     "level": "easy",
-    "src": "easy/02-assign-vs-equal.json",
-    "prompt": "x is 0 이 출력될까요?",
-    "lang": "C",
-    "code": "int x = 0;\n\nif (x = 0) {\n    printf(\"x is 0\\n\");\n}",
-    "answer": "아니오 — 아무것도 출력되지 않습니다",
-    "note": "x = 0 은 비교가 아니라 대입입니다. x에 0을 넣고 그 결과값 0이 조건으로 쓰이는데, C에서 0은 거짓이라 if 안으로 들어가지 않습니다. == 였다면 x가 0이니 출력됐을 겁니다.",
-    "bad": [
-      3
-    ]
-  },
-  {
-    "level": "easy",
-    "src": "easy/03-start-index.json",
+    "src": "easy/02-start-index.json",
     "prompt": "이 출력이 나오게 하려면 어디를 바꿔야 할까요?",
     "lang": "C++",
     "code": "int arr[5] = {10, 20, 30, 40, 50};\n\nfor (int i = 0; i < 5; i++) {\n    cout << arr[i] << \" \";\n}",
@@ -45,7 +33,7 @@ const QUESTIONS = [
   },
   {
     "level": "easy",
-    "src": "easy/04-post-increment.json",
+    "src": "easy/03-post-increment.json",
     "prompt": "출력 결과를 예측하세요",
     "lang": "C++",
     "code": "int a = 3;\nint b = a++;\n\ncout << a << \" \" << b;",
@@ -56,8 +44,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "level": "medium",
-    "src": "medium/01-star-pattern.json",
+    "level": "easy",
+    "src": "easy/04-star-pattern.json",
     "prompt": "틀린 곳을 찾으세요",
     "lang": "C",
     "code": "for (int i = 0; i < 3; i++) {\n    for (int j = 0; j <= i; i++) {\n        printf(\"*\");\n    }\n    printf(\"\\n\");\n}",
@@ -69,8 +57,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "level": "medium",
-    "src": "medium/02-python-sum.json",
+    "level": "easy",
+    "src": "easy/05-python-sum.json",
     "prompt": "틀린 곳을 찾으세요",
     "lang": "Python",
     "code": "n = int(input())\nans = 0\nfor i in range(1, n+1):\n    ans = ans + n\nprint(ans)",
@@ -83,8 +71,20 @@ const QUESTIONS = [
     ]
   },
   {
-    "level": "medium",
-    "src": "medium/03-bit-precedence.json",
+    "level": "hard",
+    "src": "hard/01-assign-vs-equal.json",
+    "prompt": "x is 0 이 출력될까요?",
+    "lang": "C",
+    "code": "int x = 0;\n\nif (x = 0) {\n    printf(\"x is 0\\n\");\n}",
+    "answer": "아니오 — 아무것도 출력되지 않습니다",
+    "note": "x = 0 은 비교가 아니라 대입입니다. x에 0을 넣고 그 결과값 0이 조건으로 쓰이는데, C에서 0은 거짓이라 if 안으로 들어가지 않습니다. == 였다면 x가 0이니 출력됐을 겁니다.",
+    "bad": [
+      3
+    ]
+  },
+  {
+    "level": "hard",
+    "src": "hard/02-bit-precedence.json",
     "prompt": "틀린 곳을 찾으세요",
     "lang": "C++",
     "code": "int n = 12;\nint i = 2;\n\ncout << (n & (1 << i) != 0);",
@@ -97,8 +97,8 @@ const QUESTIONS = [
     ]
   },
   {
-    "level": "medium",
-    "src": "medium/04-vector-erase.json",
+    "level": "hard",
+    "src": "hard/03-vector-erase.json",
     "prompt": "출력 결과를 예측하세요",
     "lang": "C++",
     "code": "vector<int> a = {1, 2, 3, 4, 5, 6};\n\nfor (auto it = a.begin(); it != a.end();) {\n    if (*it % 2 == 0) {\n        it = a.erase(it);\n    } else {\n        ++it;\n    }\n}\n\nfor (int x : a) {\n    cout << x << ' ';\n}",
@@ -110,7 +110,7 @@ const QUESTIONS = [
   },
   {
     "level": "hard",
-    "src": "hard/01-hanoi-base-case.json",
+    "src": "hard/04-hanoi-base-case.json",
     "prompt": "틀린 곳을 찾으세요",
     "lang": "Python",
     "code": "def hanoi(n, source, target, auxiliary, moves):\n    if n == 1:\n        return\n    hanoi(n - 1, source, auxiliary, target, moves)\n    moves.append(f\"{source} -> {target}\")\n    hanoi(n - 1, auxiliary, target, source, moves)\n\nn = int(input())\nmoves = []\nhanoi(n, 'A', 'C', 'B', moves)\n\nprint(len(moves))\nfor move in moves:\n    print(move)",
@@ -125,7 +125,7 @@ const QUESTIONS = [
   },
   {
     "level": "hard",
-    "src": "hard/02-knapsack-unbounded.json",
+    "src": "hard/05-knapsack-unbounded.json",
     "prompt": "출력 결과를 예측하세요",
     "lang": "C++",
     "code": "int capacity = 17;\nvector<int> weight = {4, 7, 9};\nvector<int> value  = {7, 13, 16};\n\nvector<int> dp(capacity + 1, 0);\n\nfor (int i = 0; i < 3; ++i) {\n    for (int w = weight[i]; w <= capacity; ++w) {\n        dp[w] = max(dp[w], dp[w - weight[i]] + value[i]);\n    }\n}\n\ncout << dp[capacity] << '\\n';",
@@ -137,7 +137,7 @@ const QUESTIONS = [
   },
   {
     "level": "hard",
-    "src": "hard/03-lowbit.json",
+    "src": "hard/06-lowbit.json",
     "prompt": "출력 결과를 예측하세요",
     "lang": "C++",
     "code": "int x = 63;\nwhile (x > 0) {\n    cout << x << ' ';\n    x -= (x & -x);\n}",
