@@ -289,10 +289,29 @@ h2 {
   padding: 0 clamp(20px, 2.4vw, 36px);
   min-height: 1.65em;
 }
+
+/* 왼쪽 줄 번호. data-n 은 app.js 의 renderCode 가 붙입니다.
+   ch 단위라서 코드 글자 크기가 줄어도 자릿수만큼만 자리를 차지합니다. */
+.code .line::before {
+  content: attr(data-n);
+  display: inline-block;
+  min-width: 2ch;
+  margin-right: 2.5ch;
+  text-align: right;
+  color: var(--dim);
+  opacity: 0.5;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
 .code .line.hit {
   background: var(--bad-bg);
   box-shadow: inset 3px 0 0 var(--bad);
   color: #ffd7d7;
+}
+.code .line.hit::before {
+  color: var(--bad);
+  opacity: 0.85;
 }
 
 .reveal.measuring { visibility: hidden; }
