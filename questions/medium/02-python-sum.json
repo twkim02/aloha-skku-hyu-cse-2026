@@ -8,7 +8,7 @@
   "code": [
     "n = int(input())",
     "ans = 0",
-    "for i in range(n):",
+    "for i in range(1, n+1):",
     "    ans = ans + n",
     "print(ans)"
   ],
@@ -16,5 +16,5 @@
     4
   ],
   "answer": "ans = ans + n   →   ans = ans + i + 1",
-  "note": "range(n)은 0부터 n-1까지 돕니다. 지금은 n을 n번 더해서 n × n 이 나옵니다."
+  "note": "현재 코드는 n을 n번 더해서 n × n 이 나오는 코드입니다."
 }

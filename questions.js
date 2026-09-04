@@ -1,7 +1,7 @@
 /* 이 파일은 build.command 가 자동으로 만듭니다. 직접 고치지 말아 주세요.
    문제를 고치려면 questions/ 폴더의 JSON 을 고친 뒤 build.command 를 실행해 주세요.
 
-   만든 시각: 2026-09-04 23:26
+   만든 시각: 2026-09-04 23:40
    문제 수: 초급 4개, 중급 4개, 고급 3개 */
 
 const QUESTIONS = [
@@ -12,7 +12,7 @@ const QUESTIONS = [
     "lang": "C",
     "code": "int arr[5] = {1, 2, 3, 4, 5};\n\nfor (int i = 0; i <= 5; i++) {\n    printf(\"%d \", arr[i]);\n}",
     "answer": "i <= 5   →   i < 5",
-    "note": "크기가 5인 배열의 인덱스는 0부터 4까지입니다. arr[5]는 배열 밖을 읽습니다.",
+    "note": "크기가 5인 배열의 인덱스는 0부터 4까지입니다.",
     "given": {
       "label": "원하는 출력",
       "text": "1 2 3 4 5"
@@ -78,9 +78,9 @@ const QUESTIONS = [
     "src": "medium/02-python-sum.json",
     "prompt": "틀린 곳을 찾으세요",
     "lang": "Python",
-    "code": "n = int(input())\nans = 0\nfor i in range(n):\n    ans = ans + n\nprint(ans)",
+    "code": "n = int(input())\nans = 0\nfor i in range(1, n+1):\n    ans = ans + n\nprint(ans)",
     "answer": "ans = ans + n   →   ans = ans + i + 1",
-    "note": "range(n)은 0부터 n-1까지 돕니다. 지금은 n을 n번 더해서 n × n 이 나옵니다.",
+    "note": "현재 코드는 n을 n번 더해서 n × n 이 나오는 코드입니다.",
     "given": {
       "label": "하는 일",
       "text": "n을 입력받아 1부터 n까지 더한 값을 출력"
@@ -141,7 +141,7 @@ const QUESTIONS = [
     "lang": "C++",
     "code": "int capacity = 17;\nvector<int> weight = {4, 7, 9};\nvector<int> value  = {7, 13, 16};\n\nvector<int> dp(capacity + 1, 0);\n\nfor (int i = 0; i < 3; ++i) {\n    for (int w = weight[i]; w <= capacity; ++w) {\n        dp[w] = max(dp[w], dp[w - weight[i]] + value[i]);\n    }\n}\n\ncout << dp[capacity] << '\\n';",
     "answer": "30",
-    "note": "안쪽 루프가 오름차순이라 같은 물건을 여러 번 담게 됩니다. 4kg 두 개 + 9kg = 17kg, 7+7+16 = 30입니다. 한 번씩만 담았다면 29입니다.",
+    "note": "17kg까지 담기는 가방에 무게 4·7·9kg, 가치 7·13·16인 물건을 넣어 가치를 최대로 만드는 배낭 문제(knapsack)입니다. 그런데 안쪽 루프가 오름차순이라 같은 물건을 여러 번 담을 수 있게 되어, 4kg 두 개와 9kg 하나로 17kg을 꽉 채워 7+7+16 = 30이 나옵니다. 물건을 하나씩만 담는 0/1 배낭이었다면 7kg+9kg = 16kg, 13+16 = 29였습니다.",
     "bad": [
       8
     ]
