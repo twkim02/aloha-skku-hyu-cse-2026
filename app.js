@@ -10,6 +10,8 @@ const el = {
   stage:      document.querySelector("#slide-quiz .stage"),
   codebox:    document.querySelector("#slide-quiz .codebox"),
   work:       $("work"),
+  ioAbout:    $("io-about"),
+  aboutText:  $("about-text"),
   ioInput:    $("io-input"),
   ioOutput:   $("io-output"),
   ioGuess:    $("io-guess"),
@@ -145,19 +147,23 @@ function renderQuestion(q) {
   el.prompt.textContent = q.prompt || "";
   el.lang.textContent = q.lang || "";
 
+  fillIO(el.ioAbout, el.aboutText, q.about);
   fillIO(el.ioInput, el.inputText, q.input);
   fillIO(el.ioOutput, el.outputText, q.output);
 
-  // 원하는 출력을 보여주지 않는 문제 = 출력을 묻는 문제이므로 답 적는 칸을 띄웁니다.
+  // 원하는 출력을 보여주지 않으면 출력을 묻는 문제로 보고 답 적는 칸을 띄웁니다.
+  // 설명만 주는 문제처럼 예외가 필요하면 JSON 에 answerBox 로 지정할 수 있습니다.
   // 맞았는지 비교하지는 않습니다. 적은 값은 정답을 공개해도 그대로 남습니다.
-  el.ioGuess.hidden = !!q.output;
+  el.ioGuess.hidden =
+    typeof q.answerBox === "boolean" ? !q.answerBox : !!q.output;
   el.guess.value = "";
   el.guess.style.height = "";
 
   // 왼쪽에 보여줄 게 하나도 없으면 코드만 가운데에 놓습니다
   el.work.classList.toggle(
     "solo",
-    el.ioInput.hidden && el.ioOutput.hidden && el.ioGuess.hidden
+    el.ioAbout.hidden && el.ioInput.hidden &&
+    el.ioOutput.hidden && el.ioGuess.hidden
   );
 
   renderCode(q);

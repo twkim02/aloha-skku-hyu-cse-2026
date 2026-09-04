@@ -26,6 +26,7 @@ body {
   color: var(--text);
   font-family: var(--kr);
   -webkit-font-smoothing: antialiased;
+  word-break: keep-all;   /* 한글을 낱글자가 아니라 어절 단위로 끊습니다 */
 }
 
 /* ── 슬라이드 ────────────────────────────────────────────── */
@@ -292,7 +293,8 @@ h2 {
 /* 한글 설명이 섞이면 본문 폰트로 바꿔 줍니다 */
 .io-text.prose {
   font-family: var(--kr);
-  font-size: clamp(14px, 1.25vw, 20px);
+  font-size: clamp(15px, 1.35vw, 22px);
+  line-height: 1.5;
   white-space: normal;
 }
 

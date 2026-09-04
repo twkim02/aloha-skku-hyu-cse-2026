@@ -1,7 +1,7 @@
 /* 이 파일은 build.command 가 자동으로 만듭니다. 직접 고치지 말아 주세요.
    문제를 고치려면 questions/ 폴더의 JSON 을 고친 뒤 build.command 를 실행해 주세요.
 
-   만든 시각: 2026-09-05 00:41
+   만든 시각: 2026-09-05 00:46
    문제 수: 초급 4개, 중급 4개, 고급 3개 */
 
 const QUESTIONS = [
@@ -76,8 +76,8 @@ const QUESTIONS = [
     "code": "n = int(input())\nans = 0\nfor i in range(1, n+1):\n    ans = ans + n\nprint(ans)",
     "answer": "ans = ans + n   →   ans = ans + i",
     "note": "현재 코드는 n을 n번 더해서 n × n 이 나오는 코드입니다.",
-    "input": "5",
-    "output": "15",
+    "about": "n을 입력받아 1부터 n까지 더한 값을 출력",
+    "answerBox": false,
     "bad": [
       4
     ]

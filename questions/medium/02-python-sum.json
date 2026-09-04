@@ -1,12 +1,10 @@
 {
   "prompt": "틀린 곳을 찾으세요",
   "lang": "Python",
-  "input": [
-    "5"
+  "about": [
+    "n을 입력받아 1부터 n까지 더한 값을 출력"
   ],
-  "output": [
-    "15"
-  ],
+  "answerBox": false,
   "code": [
     "n = int(input())",
     "ans = 0",
