@@ -111,6 +111,16 @@ function fitCode() {
   }
 }
 
+/* 정답이 대부분 한글이면 본문 폰트로 보여 줍니다.
+   "63 62 60 ... (한 줄에 하나씩)" 처럼 코드나 숫자가 섞인 정답은
+   등폭이라야 읽히므로, 한글 비율로 가릅니다. */
+function isMostlyKorean(text) {
+  const chars = text.replace(/\s/g, "");
+  if (!chars) return false;
+  const hangul = chars.match(/[가-힣]/g);
+  return (hangul ? hangul.length : 0) / chars.length > 0.5;
+}
+
 /* 적은 만큼 칸이 늘어나게 합니다. 여러 줄짜리 답이 잘려 보이면
    정답과 나란히 비교할 수가 없기 때문입니다. */
 function growGuess() {
@@ -154,6 +164,7 @@ function renderQuestion(q) {
 
   // 정답 내용은 미리 채워 두되 감춰 둡니다 (크기를 재는 데 쓰입니다)
   el.answer.textContent = q.answer || "";
+  el.answer.classList.toggle("prose", isMostlyKorean(q.answer || ""));
   el.note.textContent = q.note || "";
   el.reveal.hidden = true;
   el.timeup.hidden = true;

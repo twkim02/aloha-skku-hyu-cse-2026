@@ -375,6 +375,12 @@ h2 {
   font-weight: 600;
   color: var(--accent);
 }
+/* 한글 문장으로 된 정답은 본문 폰트로 (등폭이면 자간이 벌어져 읽기 나쁩니다) */
+#answer.prose {
+  font-family: var(--kr);
+  font-size: clamp(18px, 1.85vw, 29px);
+}
+
 .answer-label {
   flex: none;
   font-family: var(--kr);

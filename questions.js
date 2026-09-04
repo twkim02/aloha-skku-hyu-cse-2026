@@ -1,7 +1,7 @@
 /* 이 파일은 build.command 가 자동으로 만듭니다. 직접 고치지 말아 주세요.
    문제를 고치려면 questions/ 폴더의 JSON 을 고친 뒤 build.command 를 실행해 주세요.
 
-   만든 시각: 2026-09-05 00:12
+   만든 시각: 2026-09-05 00:35
    문제 수: 초급 4개, 중급 4개, 고급 3개 */
 
 const QUESTIONS = [
@@ -21,13 +21,11 @@ const QUESTIONS = [
   {
     "level": "easy",
     "src": "easy/02-assign-vs-equal.json",
-    "prompt": "조건문에서 틀린 한 글자를 찾으세요",
+    "prompt": "x is 0 이 출력될까요?",
     "lang": "C",
-    "code": "int x = 5;\n\nif (x = 10) {\n    printf(\"x is 10\\n\");\n}",
-    "answer": "x = 10   →   x == 10",
-    "note": "=는 대입, ==가 비교입니다. x에 10을 넣은 뒤 그 값 10이 참으로 취급돼 조건이 항상 성립합니다.",
-    "input": "x = 5",
-    "output": "아무것도 출력되지 않습니다",
+    "code": "int x = 0;\n\nif (x = 0) {\n    printf(\"x is 0\\n\");\n}",
+    "answer": "아니오 — 아무것도 출력되지 않습니다",
+    "note": "x = 0 은 비교가 아니라 대입입니다. x에 0을 넣고 그 결과값 0이 조건으로 쓰이는데, C에서 0은 거짓이라 if 안으로 들어가지 않습니다. == 였다면 x가 0이니 출력됐을 겁니다.",
     "bad": [
       3
     ]
@@ -142,8 +140,8 @@ const QUESTIONS = [
     "src": "hard/03-lowbit.json",
     "prompt": "출력 결과를 예측하세요",
     "lang": "C++",
-    "code": "int x = 63;\nwhile (x > 0) {\n    cout << x << '\\n';\n    x -= (x & -x);\n}",
-    "answer": "63 62 60 56 48 32   (한 줄에 하나씩, 6줄)",
+    "code": "int x = 63;\nwhile (x > 0) {\n    cout << x << ' ';\n    x -= (x & -x);\n}",
+    "answer": "63 62 60 56 48 32 ",
     "note": "x & -x 는 가장 낮은 켜진 비트를 뽑아냅니다. 63은 111111이므로 켜진 비트를 아래부터 하나씩 끄면 6번 만에 0이 됩니다.",
     "bad": [
       4
